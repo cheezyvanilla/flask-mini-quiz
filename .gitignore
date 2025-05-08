@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+.venv/
+
+# Flask cache and debug files
+instance/
+*.db
+*.sqlite3
+
+# VS Code settings
+.vscode/
+
+# macOS
+.DS_Store
+
+# PyCharm
+.idea/
+
+# Test coverage
+htmlcov/
+.coverage
+.pytest_cache/
+
+# Logs
+*.log
+
+# OS junk
+Thumbs.db
+
+Lib/
+Scripts/
+Include/
+pyvenv.cfg
