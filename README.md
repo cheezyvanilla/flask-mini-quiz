@@ -1,1 +1,3 @@
-# Flask Quiz App\n\nA simple API-driven quiz application.
+# Flask Quiz App
+
+A simple API-driven quiz application.
