@@ -1,14 +1,29 @@
-/* static/css/login.css */
+/* Reset default styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
 }
 
+/* Ensure the whole page stacks top-down */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar styles should be in navbar.css (already loaded separately) */
+
+/* Container that wraps the login form */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem; /* Space below navbar */
+}
+
+/* Login form box */
 .login-container {
     background-color: white;
     padding: 30px;
@@ -33,7 +48,8 @@ label {
     color: #333;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"],
+input[type="password"] {
     width: 95%;
     padding: 10px;
     margin-top: 5px;
@@ -61,4 +77,24 @@ button[type="submit"]:hover {
     color: red;
     font-size: 14px;
     margin-top: 10px;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.register-button {
+    width: 100%;
+    padding: 0.6rem;
+    background-color: #6c757d; /* A neutral gray tone */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+    background-color: #5a6268;
 }

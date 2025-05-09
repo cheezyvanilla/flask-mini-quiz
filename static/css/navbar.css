@@ -1,0 +1,36 @@
+.navbar {
+    background-color: #333;
+    padding: 1rem;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    margin: 0 1rem;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-menu a:hover {
+    text-decoration: underline;
+}
+
+.site-footer {
+    background-color: #f1f1f1;
+    color: #333;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 14px;
+    border-top: 1px solid #ddd;
+    margin-top: auto;
+}

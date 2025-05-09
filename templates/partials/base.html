@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mini Quiz{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="page-wrapper">
+        {% include 'partials/navbar.html' %}
+
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        {% include 'partials/footer.html' %}
+    </div>
+</body>
+</html>

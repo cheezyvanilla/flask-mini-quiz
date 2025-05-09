@@ -1,0 +1,13 @@
+<nav class="navbar">
+    <ul class="nav-menu">
+        <li><a href="{{ url_for('login') }}">Home</a></li>
+
+        {% if is_logged_in %}
+            <li><a href="{{ url_for('login') }}">Quiz</a></li>
+            <li><a href="{{ url_for('login') }}">Logout</a></li>
+        {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+        {% endif %}
+    </ul>
+</nav>
