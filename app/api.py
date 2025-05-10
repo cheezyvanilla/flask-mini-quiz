@@ -71,6 +71,11 @@ def logout():
 
 @api.route('/api/weather', methods=['GET'])
 def get_weather():
+    # auth session
+    if not session.get('session'):
+        return jsonify({'error': 'Unauthorized'}), 401
+
+    # Get city from query parameter
     city = request.args.get('city')
     if not city:
         return jsonify({'error': 'City parameter is required'}), 400
