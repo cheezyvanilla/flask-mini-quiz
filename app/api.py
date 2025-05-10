@@ -71,10 +71,6 @@ def logout():
 
 @api.route('/api/weather', methods=['GET'])
 def get_weather():
-    # auth session
-    if not session.get('session'):
-        return jsonify({'error': 'Unauthorized'}), 401
-
     # Get city from query parameter
     city = request.args.get('city')
     if not city:
@@ -112,14 +108,39 @@ def get_weather():
         date = datetime.fromtimestamp(entry['dt']).date()
         daily_forecast[date].append(entry)
 
+
     forecast_data = []
     for date, entries in list(daily_forecast.items())[:3]:
         day_weather = entries[2]['weather'][0]['description'] if len(entries) > 2 else entries[0]['weather'][0]['description']
         night_weather = entries[-1]['weather'][0]['description']
+
+        date_str = date.strftime('%d %B %Y')
+        parts = date_str.split()
+        day = parts[0]
+        month = month_map.get(parts[1], parts[1])  # Translate if possible
+        year = parts[2]
+
+        date_indo = f"{day} {month} {year}"
         forecast_data.append({
             'day': date.strftime('%A'),
+            'date': date_indo,
             'day_weather': day_weather,
             'night_weather': night_weather
         })
     print('cekres', forecast_data)
     return jsonify({'forecast': forecast_data})
+
+month_map = {
+    'January': 'Januari',
+    'February': 'Februari',
+    'March': 'Maret',
+    'April': 'April',
+    'May': 'Mei',
+    'June': 'Juni',
+    'July': 'Juli',
+    'August': 'Agustus',
+    'September': 'September',
+    'October': 'Oktober',
+    'November': 'November',
+    'December': 'Desember'
+}
