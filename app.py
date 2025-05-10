@@ -6,7 +6,7 @@ from apps.models import User
 app = Flask(__name__)
 
 # Load configuration
-app.config.from_object('app.config.Config')
+app.config.from_object('apps.config.Config')
 
 # Initialize database with app
 db.init_app(app)
