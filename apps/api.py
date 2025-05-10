@@ -1,5 +1,5 @@
 # api.py
-from flask import Blueprint, request, jsonify, session
+from flask import Blueprint, request, jsonify, session, render_template
 from werkzeug.security import generate_password_hash, check_password_hash
 from apps.db import db
 from apps.models import User
@@ -67,7 +67,7 @@ def login():
 @api.route('/api/logout', methods=['POST'])
 def logout():
     session.pop('session', None)
-    return jsonify({'message': 'Logout successful'})
+    return render_template('login.html')
 
 @api.route('/api/quiz', methods=['GET'])
 def get_quiz():
@@ -156,6 +156,14 @@ def get_weather():
         })
     print('cekres', forecast_data)
     return jsonify({'forecast': forecast_data})
+
+@api.route('/api/scoreboard')
+def scoreboard():
+    users = User.query.order_by(User.score.desc()).limit(10).all()
+    return jsonify([
+        {"username": user.username, "score": user.score}
+        for user in users
+    ])
 
 month_map = {
     'January': 'Januari',

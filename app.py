@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, session
+from flask import Flask, request, jsonify, render_template, session, redirect, url_for
 from apps.db import db
 from apps.api import api
 from apps.models import User
@@ -23,6 +23,11 @@ def register():
 def login():
     is_logged_in = True if session.get('session') else False
     return render_template('login.html', is_logged_in=is_logged_in)
+
+@app.route('/logout')
+def logout():
+    session.pop('session', None)
+    return redirect(url_for('login'))
 
 @app.route('/')
 def index():
