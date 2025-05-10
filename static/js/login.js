@@ -32,7 +32,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         if (data.error) {
             errorMessage.textContent = data.error;
         } else {
-            window.location.href = '/dashboard';  // Redirect to dashboard or another page
+            window.location.href = '/';  // Redirect to dashboard or another page
         }
     })
     .catch(error => {

@@ -3,6 +3,7 @@ from flask import Blueprint, request, jsonify, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.db import db
 from app.models import User
+from app.utils.mistral_quiz import mistral_quiz
 from dotenv import load_dotenv
 import os
 import requests
@@ -13,7 +14,6 @@ api = Blueprint('api', __name__)
 @api.route('/api/register', methods=['POST'])
 def register():
     data = request.get_json()
-    print(data)
     
     # Validate input
     username = data.get('username')
@@ -68,6 +68,33 @@ def login():
 def logout():
     session.pop('session', None)
     return jsonify({'message': 'Logout successful'})
+
+@api.route('/api/quiz', methods=['GET'])
+def get_quiz():
+    prev_question = request.args.get('prev_question', 'Apa itu AI dalam konteks pemrograman Python? and Apa yang dimaksud dengan AI (Artificial Intelligence)?')
+    resp = mistral_quiz(prev_question)
+    return jsonify(resp)
+
+@api.route('/api/score', methods=['POST'])
+def update_score():
+    # get session data
+    session_data = session.get('session')
+    if not session_data:
+        return jsonify({'error': 'User not logged in'}), 401
+
+    data = request.get_json()
+    score = data.get('score')
+    if not score:
+        return jsonify({'error': 'Score is required'}), 400
+
+    user = User.query.filter_by(username=session_data['username']).first()
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+
+    # Update and save score
+    user.score = user.score + 10
+    db.session.commit()
+    return jsonify({'message': 'Score updated successfully'})
 
 @api.route('/api/weather', methods=['GET'])
 def get_weather():

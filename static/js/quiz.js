@@ -7,32 +7,34 @@ const nextBtn = document.getElementById('next-button');
 
 let currentQuestion = null;
 
-function loadQuestion() {
+function loadQuestion(prev_question = '') {
     feedback.textContent = 'Loading...';
     nextBtn.style.display = 'none';
-    fetch('/api/quiz')
+    const encodedPrev = encodeURIComponent(prev_question);
+    fetch(`/api/quiz?prev_question=${encodedPrev}`)
         .then(res => res.json())
         .then(data => {
             currentQuestion = data;
             questionText.textContent = data.question;
             feedback.textContent = '';
             choicesBox.innerHTML = '';
-
+            console.log(data);
             data.choices.forEach((choice, idx) => {
                 const btn = document.createElement('button');
                 btn.classList.add('choice-btn');
                 btn.textContent = choice;
-                btn.onclick = () => handleAnswer(choice);
+                btn.onclick = () => handleAnswer(idx, data.answer);
                 choicesBox.appendChild(btn);
             });
         });
 }
 
-function handleAnswer(selected) {
+function handleAnswer(selected, answer) {
     const buttons = document.querySelectorAll('.choice-btn');
     buttons.forEach(btn => btn.disabled = true);
 
-    if (selected === currentQuestion.answer) {
+    console.log(selected, answer)
+    if (selected === answer) {
         feedback.textContent = '✅ Correct!';
         feedback.style.color = 'green';
         currentScore += 10;
@@ -61,6 +63,6 @@ function handleAnswer(selected) {
     nextBtn.style.display = 'block';
 }
 
-nextBtn.onclick = loadQuestion;
+nextBtn.onclick = () => loadQuestion(questionText.textContent);
 
 window.onload = loadQuestion;

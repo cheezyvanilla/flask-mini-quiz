@@ -1,6 +1,10 @@
-{% extends "base.html" %}
+{% extends "partials/base.html" %}
 
 {% block title %}Quiz{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/quiz.css') }}">
+{% endblock %}
 
 {% block content %}
 <div class="quiz-container">
@@ -16,8 +20,7 @@
 
     <button id="next-button" class="next-button" style="display:none;">Next Question</button>
 </div>
+<script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
+
 {% endblock %}
 
-{% block scripts %}
-<script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
-{% endblock %}
