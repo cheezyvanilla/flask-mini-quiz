@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template, session
-from app.db import db
-from app.api import api
-from app.models import User
+from apps.db import db
+from apps.api import api
+from apps.models import User
 # Initialize the Flask app and database
 app = Flask(__name__)
 

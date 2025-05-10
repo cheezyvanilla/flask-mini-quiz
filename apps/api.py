@@ -1,9 +1,9 @@
 # api.py
 from flask import Blueprint, request, jsonify, session
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.db import db
-from app.models import User
-from app.utils.mistral_quiz import mistral_quiz
+from apps.db import db
+from apps.models import User
+from apps.utils.mistral_quiz import mistral_quiz
 from dotenv import load_dotenv
 import os
 import requests
