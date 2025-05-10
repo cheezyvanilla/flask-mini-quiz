@@ -85,6 +85,6 @@ function loadScoreboard() {
 nextBtn.onclick = () => loadQuestion(questionText.textContent);
 
 window.onload = () => {
-    loadQuestion();
+    loadQuestion("Apa itu AI dalam konteks pemrograman Python? and Apa yang dimaksud dengan AI (Artificial Intelligence)?");
     loadScoreboard();
 };
