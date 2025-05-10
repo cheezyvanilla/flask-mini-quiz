@@ -2,7 +2,7 @@ import requests
 import os
 
 
-def mistral_query(question, base):
+def mistral_quiz():
     url = str(os.getenv("MISTRAL_URL")) + "/agents/completions"
     headers = {
         "Content-Type": "application/json",
@@ -15,7 +15,7 @@ def mistral_query(question, base):
         "messages": [
             {
                 "role": "user",
-                "content": f"- question: {question} - base: {base}"
+                "content": "gimme quiz"
             }
         ]
     }
