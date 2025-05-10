@@ -98,9 +98,33 @@ body {
     text-align: left;
     font-size: 1rem;
 }
-/* 
 
+.choice-btn:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
 
+.feedback {
+    margin-top: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.next-button {
+    margin-top: 1.5rem;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.next-button:hover {
+    background-color: #0056b3;
+}
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .main-content {
