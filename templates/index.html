@@ -1,35 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
-</head>
-<body>
-    <div class="register-container">
-        <h2>Create Account</h2>
-        <form id="registerForm">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" required>
-            </div>
-            <div class="form-group">
-                <label for="nickname">Nickname</label>
-                <input type="text" id="nickname" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" required>
-            </div>
-            <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="password" id="confirmPassword" required>
-            </div>
-            <button type="submit">Register</button>
-            <div class="message" id="error"></div>
-        </form>
+{% extends "/partials/base.html" %}
+{% block title %}Home{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+{% block content %}
+<div class="home-container">
+    <h2>Selamat Datang!</h2>
+    <p id="current-date"></p>
+
+    <div class="weather-search">
+        <label for="city">Masukkan nama kota:</label>
+        <input type="text" id="city" placeholder="Contoh: Jakarta">
+        <button onclick="getWeather()">Cari Cuaca</button>
     </div>
 
-    <script src="{{ url_for('static', filename='js/register.js') }}"></script>
-</body>
-</html>
+    <div id="today-weather" class="weather-block"></div>
+    <table id="forecast-table" class="weather-table" style="display: none;">
+        <thead>
+            <tr>
+                <th>Hari</th>
+                <th>Cuaca Siang</th>
+                <th>Cuaca Malam</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<script src="{{ url_for('static', filename='js/register.js') }}"></script>
+{% endblock %}
