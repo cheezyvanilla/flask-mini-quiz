@@ -14,6 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const options = { day: 'numeric', month: 'long', year: 'numeric' };
     const dateStr = today.toLocaleDateString('id-ID', options);
     document.getElementById("current-date").textContent = `Hari ini: ${dayName}, ${dateStr}`;
+
+    const cityInput = document.getElementById("city");
+    cityInput.addEventListener("keyup", function(e) {
+        if (e.key === "Enter") {
+            getWeather();
+        }
+    });
 });
 
 function getWeather() {
